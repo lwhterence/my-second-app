@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My 2nd app call server</title>
+    <style>
+        body {
+            font-family: sans-serif; text-align: center; margin-top: 100px; background-color: #f4f4f9;} 
+            button { padding: 12px 24px; font-size: 16px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 5px; }
+            button:hover { background-color: #0056b3;}
+            #responseMsg { font-size: 18px; margin-top: 25px; color: #333; font-weight: bold;}
+    </style>
+</head>
+<body>
+    <h1>I am Terence, this is my 2nd app call server</h1>
+    <button id="fetchBtn"> To call the backend server.js</button>
+    <p id="responseMsg"></p>
+
+    <script>
+        document.getElementById('fetchBtn').addEventListener('click', async () => {
+            const msgEl = document.getElementById('responseMsg');
+            msgEl.textContent = 'here is connecting to the backend server.js...';
+
+            try {
+                // REPLACE WITH MY ACTUAL RENDER BACKEND URL:
+                const response = await fetch('https://my-first-app-backend-o3m8.onrender.com/api/hello'); 
+                const data = await response.json();
+                msgEl.textContent = data.message;
+            } catch (error) {
+                msgEl.textContent = 'Error connecting to backend.';
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
